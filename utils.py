@@ -149,9 +149,11 @@ class ImageToImage2D(Dataset):
         # print(os.path.join(self.output_path, image_filename[: -3] + "png"))
         # print(os.path.join(self.input_path, image_filename))
         image = cv2.imread(os.path.join(self.input_path, image_filename))
+        image = cv2.resize(image, (256,256))
         # print(image.shape)
         # read mask image
         mask = cv2.imread(os.path.join(self.output_path, image_filename[: -3] + "png"),0)
+        mask = cv2.resize(mask, (256, 256))
         
         mask[mask<=127] = 0
         mask[mask>127] = 1
